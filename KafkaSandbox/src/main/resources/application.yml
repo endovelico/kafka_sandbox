@@ -4,3 +4,8 @@ spring:
     consumer:
       group-id: sandbox-group
       auto-offset-reset: earliest
+    streams:
+      application-id: sandbox-streams-app
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde

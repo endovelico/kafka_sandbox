@@ -11,4 +11,11 @@ public class KafkaConsumerService {
     public void listen(String message) {
         System.out.println("Received: " + message);
     }
+
+    @KafkaListener(topics = "sandbox-topic-processed", groupId = "sandbox-group")
+    public void listenProcessed(String message) {
+        System.out.println("Processed message: " + message);
+    }
+
+
 }
