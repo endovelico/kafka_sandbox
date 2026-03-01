@@ -4,6 +4,7 @@ spring:
     consumer:
       group-id: sandbox-group
       auto-offset-reset: earliest
+      #enable-auto-commit: false
     streams:
       application-id: sandbox-streams-app
       properties:
