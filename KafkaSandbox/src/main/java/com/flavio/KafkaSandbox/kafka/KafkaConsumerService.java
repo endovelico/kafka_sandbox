@@ -11,6 +11,7 @@ public class KafkaConsumerService {
 
     @KafkaListener(topics = "sandbox-topic", groupId = "sandbox-group")
     public void listen(String message) {
+        System.out.println("Plain Listener");
         System.out.println("Received: " + message);
     }
 
@@ -21,6 +22,7 @@ public class KafkaConsumerService {
 
     @KafkaListener(topics = "sandbox-topic", groupId = "sandbox-group")
     public void listenWithPartitionOffset(ConsumerRecord<String, String> record) {
+        System.out.println("Offset Listener");
         System.out.printf(
                 "Received: %s | Partition: %d | Offset: %d%n",
                 record.value(),
@@ -32,6 +34,7 @@ public class KafkaConsumerService {
     @KafkaListener(topics = "sandbox-topic", groupId = "sandbox-group",
             containerFactory = "kafkaListenerContainerFactory")
     public void listenManualAck(ConsumerRecord<String, String> record, Acknowledgment ack) {
+        System.out.println("Ack Listener");
         System.out.printf("Message: %s | Partition: %d | Offset: %d%n",
                 record.value(), record.partition(), record.offset());
         ack.acknowledge(); // commit offset manually

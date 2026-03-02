@@ -9,6 +9,7 @@ public class KafkaSecondConsumer {
 
     @KafkaListener(topics = "sandbox-topic", groupId = "sandbox-group")
     public void listenSecond(ConsumerRecord<String, String> record) {
+        System.out.println("Second Listener");
         System.out.printf(
                 "[SecondConsumer] Message: %s | Partition: %d | Offset: %d%n",
                 record.value(),
