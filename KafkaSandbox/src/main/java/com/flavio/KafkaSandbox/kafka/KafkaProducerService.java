@@ -4,6 +4,8 @@ package com.flavio.KafkaSandbox.kafka;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class KafkaProducerService {
 
@@ -14,6 +16,17 @@ public class KafkaProducerService {
     }
 
     public void sendMessage(String message) {
+
         kafkaTemplate.send("sandbox-topic", message);
+    }
+
+    public void sendRandomlyIdentifiedMessage(String message) {
+        String messageId = UUID.randomUUID().toString();
+
+        kafkaTemplate.send("sandbox-topic", messageId, message);
+    }
+
+    public void sendIdentifiedMessage(String message, String id) {
+        kafkaTemplate.send("sandbox-topic", id, message);
     }
 }
